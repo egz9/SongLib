@@ -2,7 +2,7 @@
 package application;
 
 import java.io.File;
-
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -29,13 +29,14 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 		primaryStage.setTitle("Song Library");
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		createlist();
 	}
 
 	public static ArrayList<Song> createlist()
 	{
 		ArrayList<Song> songlist = new ArrayList<Song>();
-		File file = new File("SavedLibrary.txt"); 
-		Scanner sc = new Scanner(file);
+		InputStream inFile = SongLib.class.getResourceAsStream("/application/SavedLibrary.txt");
+		Scanner sc = new Scanner(inFile);
 		while (sc.hasNext()){
 			String detail = sc.nextLine();
 			String [] arrOfdet = detail.split("_");
@@ -45,6 +46,7 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 			Song s = new Song(arrOfdet[0],arrOfdet[1],arrOfdet[2], year);
 			songlist.add(s);
 		}
+		
 		sc.close();
 		return songlist;
 	}
