@@ -50,4 +50,9 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 		sc.close();
 		return songlist;
 	}
+	public static AddSong()
+	{
+		
+	}
+	}
 }
