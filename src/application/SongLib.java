@@ -38,7 +38,7 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 		Scanner sc = new Scanner(file);
 		while (sc.hasNext()){
 			String detail = sc.nextLine();
-			String [] arrOfdet = str.split("_",)
+			String [] arrOfdet = detail.split("_");
 			for(String a : arrOfdet)
 				System.out.println(a);
 			Song s = new Song(a);
