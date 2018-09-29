@@ -29,7 +29,7 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 		primaryStage.setTitle("Song Library");
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		createlist();
+		//createlist();
 	}
 
 	public static ArrayList<Song> createlist()
@@ -50,9 +50,11 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 		sc.close();
 		return songlist;
 	}
+	/*
 	public static AddSong()
 	{
 		
+	//}
 	}
-	}
+	*/
 }

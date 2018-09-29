@@ -58,7 +58,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Year:" textAlignment="CENTER" wrappingWidth="52.185546875" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <TextField fx:id="albumField" editable="false" text="Let it Be" GridPane.columnIndex="3" />
             <TextField fx:id="yearField" editable="false" text="1970" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Button fx:id="saveB" mnemonicParsing="false" text="Save" textAlignment="CENTER" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button fx:id="saveB" mnemonicParsing="false" onAction="#saveButton" text="Save" textAlignment="CENTER" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
    </children>

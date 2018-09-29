@@ -45,9 +45,11 @@ public class Controller {
 		
 		//save button pops up, to let program know when user wants to save changes
 		saveB.setVisible(true);
-		
+		/*
 		saveB.setOnAction(event -> {
 			System.out.println("dog");
+			System.out.println(songField.getText() + "_" + artistField.getText() + "_"
+			+ albumField.getText() + "_" + yearField.getText());
 			listArea.setDisable(false);
 			editB.setDisable(false);
 			delB.setDisable(false);
@@ -56,6 +58,7 @@ public class Controller {
 			saveB.setVisible(false);
 			return;
 		});
+		*/
 	}
 	/* allows text fields to be changed. once user saves changes, the fields
 	 * will no longer allow changes
@@ -69,6 +72,19 @@ public class Controller {
 		
 		allowDetailEdits(true);
 		saveB.setVisible(true);
+	}
+	
+	//add to fxml
+	public void saveButton(){
+		System.out.println("dog");
+		System.out.println(songField.getText() + "_" + artistField.getText() + "_"
+		+ albumField.getText() + "_" + yearField.getText());
+		listArea.setDisable(false);
+		editB.setDisable(false);
+		delB.setDisable(false);
+		addB.setDisable(false);
+		allowDetailEdits(false);
+		saveB.setVisible(false);
 	}
 	
 	public void allowDetailEdits(boolean b){
