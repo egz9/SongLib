@@ -17,15 +17,11 @@ public class Song {
 	public static boolean IsSame(Song s, Song s2)
 	{
 		if(s.name == s2.name)
-		
+		{
 			if(s.artist == s2.artist)
 				{
 				return true;
 				}
-			else
-			{
-				add()
-			}
 		}
 		return false;
 		

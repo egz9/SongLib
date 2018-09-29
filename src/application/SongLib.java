@@ -1,6 +1,10 @@
 
 package application;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,6 +31,20 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 		
 	}
 
-	
-	
+	public static ArrayList<Song> createlist()
+	{
+		ArrayList<Song> songlist = new ArrayList<Song>();
+		File file = new File("SavedLibrary.txt"); 
+		Scanner sc = new Scanner(file);
+		while (sc.hasNext()){
+			String detail = sc.nextLine();
+			String [] arrOfdet = str.split("_",)
+			for(String a : arrOfdet)
+				System.out.println(a);
+			Song s = new Song(a);
+			songlist.add(s);
+		}
+		sc.close();
+		return songlist;
+	}
 }
