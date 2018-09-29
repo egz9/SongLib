@@ -2,7 +2,6 @@
 package application;
 
 import java.io.File;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -47,5 +46,10 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 		}
 		sc.close();
 		return songlist;
+	}
+	public static AddSong()
+	{
+		
+	}
 	}
 }
