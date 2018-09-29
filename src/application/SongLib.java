@@ -34,6 +34,7 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 
 	public static ArrayList<Song> createlist()
 	{
+		
 		ArrayList<Song> songlist = new ArrayList<Song>();
 		InputStream inFile = SongLib.class.getResourceAsStream("/application/SavedLibrary.txt");
 		Scanner sc = new Scanner(inFile);
@@ -42,8 +43,20 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 			String [] arrOfdet = detail.split("_");
 			for(String a : arrOfdet) 
 				System.out.println();
-			int year = Integer.parseInt(arrOfdet[3]);
-			Song s = new Song(arrOfdet[0],arrOfdet[1],arrOfdet[2], year);
+			Song s = new Song();
+			if(arrOfdet[2] == null)
+			{
+				if(arrOfdet[3] == null)
+				{
+				Song s = new Song(arrOfdet[0],arrOfdet[1],arrOfdet[2], "");
+				}
+				Song s = new Song(arrOfdet[0],arrOfdet[1],"", "");
+			}	
+			else
+			{
+				Song s = new Song(arrOfdet[0],arrOfdet[1], arrOfdet[2], arrOfdet[3]);
+			}
+			
 			songlist.add(s);
 		}
 		
