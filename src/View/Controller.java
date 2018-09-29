@@ -23,7 +23,7 @@ public class Controller {
 	@FXML TextField albumField;
 	@FXML TextField yearField;
 	
-	/*
+	/* 
 	 * 
 	 */
 	public void addButton(ActionEvent e){
