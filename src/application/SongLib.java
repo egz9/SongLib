@@ -39,9 +39,10 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 		while (sc.hasNext()){
 			String detail = sc.nextLine();
 			String [] arrOfdet = detail.split("_");
-			for(String a : arrOfdet)
-				System.out.println(a);
-			Song s = new Song(a);
+			for(String a : arrOfdet) 
+				System.out.println();
+			int year = Integer.parseInt(arrOfdet[3]);
+			Song s = new Song(arrOfdet[0],arrOfdet[1],arrOfdet[2], year);
 			songlist.add(s);
 		}
 		sc.close();
