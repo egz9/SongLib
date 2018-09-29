@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="504.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Controller">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="504.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Controller">
    <children>
       <HBox prefHeight="71.0" prefWidth="600.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="224.0" text="ADD">
+            <Button fx:id="addB" mnemonicParsing="false" onAction="#addButton" prefHeight="100.0" prefWidth="224.0" text="ADD">
                <HBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </HBox.margin>
@@ -25,14 +25,14 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="224.0" text="DELETE">
+            <Button fx:id="delB" mnemonicParsing="false" prefHeight="100.0" prefWidth="224.0" text="DELETE">
                <HBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </HBox.margin>
             </Button>
          </children>
       </HBox>
-      <ListView editable="true" prefHeight="370.0" prefWidth="600.0" />
+      <ListView fx:id="listArea" editable="true" prefHeight="370.0" prefWidth="600.0" />
       <GridPane>
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="115.0" minWidth="10.0" prefWidth="103.0" />
@@ -58,6 +58,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Year:" textAlignment="CENTER" wrappingWidth="52.185546875" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <TextField fx:id="albumField" editable="false" text="Let it Be" GridPane.columnIndex="3" />
             <TextField fx:id="yearField" editable="false" text="1970" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Button fx:id="saveB" mnemonicParsing="false" text="Save" textAlignment="CENTER" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
    </children>

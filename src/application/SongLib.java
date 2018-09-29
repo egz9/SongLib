@@ -1,6 +1,9 @@
 
 package application;
 
+import java.io.File;
+import java.util.Scanner;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,7 +27,6 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 		primaryStage.setTitle("Song Library");
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		
 	}
 
 	

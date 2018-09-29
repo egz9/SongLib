@@ -24,9 +24,8 @@ public class Song {
 				}
 			else
 			{
-				add()
+				//add()
 			}
-		}
 		return false;
 		
 	}
