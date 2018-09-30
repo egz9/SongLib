@@ -1,3 +1,4 @@
+//Eric Zimmerman & Allen Guo
 package application;
 
 public class Song{
