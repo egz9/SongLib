@@ -27,4 +27,9 @@ public class Song{
 		}
 		return false;
 	}
+	@Override
+	public String toString(){
+		return this.name + "_" +  this.artist + "_" + this.album + "_" + this.year;		
+	}
+	
 }
