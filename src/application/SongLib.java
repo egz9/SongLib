@@ -29,7 +29,7 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 		primaryStage.setTitle("Song Library");
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		//createlist();
+		createlist();
 	}
 
 	public static ArrayList<Song> createlist()
@@ -42,24 +42,24 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 			String detail = sc.nextLine();
 			String [] arrOfdet = detail.split("_");
 			for(String a : arrOfdet) 
-				System.out.println();
-			Song s = new Song();
-			if(arrOfdet[2] == null)
+				System.out.println(a);
+			if(arrOfdet.length > 2 && arrOfdet[2] != null)
 			{
-				if(arrOfdet[3] == null)
+				if(arrOfdet.length > 3 && arrOfdet[3] != null)
 				{
-				Song s = new Song(arrOfdet[0],arrOfdet[1],arrOfdet[2], "");
+					Song s = new Song(arrOfdet[0], arrOfdet[1], arrOfdet[2], arrOfdet[3]);
+					songlist.add(s);
 				}
-				Song s = new Song(arrOfdet[0],arrOfdet[1],"", "");
-			}	
-			else
-			{
-				Song s = new Song(arrOfdet[0],arrOfdet[1], arrOfdet[2], arrOfdet[3]);
+				else {
+					Song s1 = new Song(arrOfdet[0],arrOfdet[1],arrOfdet[2],"");
+					songlist.add(s1);
+				}
 			}
-			
-			songlist.add(s);
+			else {
+				Song s2 = new Song(arrOfdet[0],arrOfdet[1],"","");
+				songlist.add(s2);
+			}
 		}
-		
 		sc.close();
 		return songlist;
 	}
