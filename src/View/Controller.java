@@ -2,9 +2,14 @@
 package View;
 
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import java.net.URL;
@@ -63,6 +68,23 @@ public class Controller {
 		System.out.println("dog");
 		System.out.println(songField.getText() + "_" + artistField.getText() + "_"
 				+ albumField.getText() + "_" + yearField.getText());
+		
+		//dumb code, just for testing
+		String s = new String(songField.getText());
+		s.trim();
+		if (s.equals("error")){
+			final Stage dialog = new Stage();
+			dialog.initModality(Modality.APPLICATION_MODAL);
+			dialog.initOwner(application.SongLib.pStage);
+			VBox dVBox = new VBox(25);
+			Text errorText = new Text ("Error my guy");
+			dVBox.getChildren().add(errorText);
+			
+			Scene dScene = new Scene(dVBox, 200, 75);
+			dialog.setScene(dScene);
+			dialog.show();
+		}
+		
 		
 		disableAllButDD(false);
 		allowDetailEdits(false);

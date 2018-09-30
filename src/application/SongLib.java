@@ -23,9 +23,11 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 		launch(args);
 	}
 
-
+	public static Stage pStage;
 	@Override
 	public void start(Stage primaryStage) throws Exception{
+		pStage = primaryStage;
+		
 		Parent root = FXMLLoader.load(getClass().getResource("/View/SongLib.fxml"));
 		Scene scene = new Scene(root, 656, 504);
 		primaryStage.setTitle("Song Library");
