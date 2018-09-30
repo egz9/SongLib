@@ -5,6 +5,7 @@ package application;
 import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 import javafx.application.Application;
@@ -30,7 +31,12 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 		primaryStage.setTitle("Song Library");
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		createlist();
+		ArrayList<Song> songList = createlist();
+		System.out.println("-------------------");
+		sortSongList(songList);
+		for(int i = 0; i < songList.size(); i++){
+			System.out.println(songList.get(i));
+		}
 	}
 
 	public static ArrayList<Song> createlist()
@@ -64,6 +70,12 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 		sc.close();
 		return songlist;
 	}
+	
+	public void sortSongList(ArrayList<Song> sl){
+		Collections.sort(sl, new SortByNameArtist());
+	}
+	
+	
 	/*
 	public static AddSong()
 	{
