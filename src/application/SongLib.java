@@ -2,8 +2,13 @@
 
 package application;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -34,8 +39,10 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		ArrayList<Song> songList = createlist();
+		
 		System.out.println("-------------------");
 		sortSongList(songList);
+		add2SongList(songList, new Song("Light my Fire", "The Doors", "The Doors", "1967"));
 		for(int i = 0; i < songList.size(); i++){
 			System.out.println(songList.get(i));
 		}
@@ -72,9 +79,32 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 		sc.close();
 		return songlist;
 	}
-	
+	/* sorts song list using java's Collections.sort method and
+	 * sortByNameArtist object allowing sort method to know
+	 * exactly how to compare song objects
+	 */
 	public void sortSongList(ArrayList<Song> sl){
 		Collections.sort(sl, new SortByNameArtist());
+	}
+	
+	/*
+	 * returns true or false based on whether or not the newSong
+	 * was successfully added to list
+	 */
+	public boolean add2SongList(ArrayList<Song> sl, Song newSong)throws IOException{
+		//check entire list to see if song has already been added
+		for(Song s : sl ) if (s.compareTo(newSong) == 0) return false;
+		
+		sl.add(newSong); //add song to end of list
+		sortSongList(sl);//sort list to put song in the right spot
+		
+		//add to saved library
+		FileWriter writer = new FileWriter("src/application/SavedLibrary.txt", true);
+		writer.append(newSong.toString() + "\n");
+		writer.close();
+		
+		//file has successfully been added to list and file so return true
+		return true;
 	}
 	
 	

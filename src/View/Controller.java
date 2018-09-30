@@ -73,16 +73,7 @@ public class Controller {
 		String s = new String(songField.getText());
 		s.trim();
 		if (s.equals("error")){
-			final Stage dialog = new Stage();
-			dialog.initModality(Modality.APPLICATION_MODAL);
-			dialog.initOwner(application.SongLib.pStage);
-			VBox dVBox = new VBox(25);
-			Text errorText = new Text ("Error my guy");
-			dVBox.getChildren().add(errorText);
-			
-			Scene dScene = new Scene(dVBox, 200, 75);
-			dialog.setScene(dScene);
-			dialog.show();
+			showErrorBox();
 		}
 		
 		
@@ -104,6 +95,22 @@ public class Controller {
 		artistField.clear();
 		albumField.clear();
 		yearField.clear();
+	}
+	
+	/*
+	 * pops up an error box when song is already in library
+	 */
+	public void showErrorBox(){
+		final Stage dialog = new Stage();
+		dialog.initModality(Modality.APPLICATION_MODAL);
+		dialog.initOwner(application.SongLib.pStage);
+		VBox dVBox = new VBox(25);
+		Text errorText = new Text ("Error: Song already in library");
+		dVBox.getChildren().add(errorText);
+		
+		Scene dScene = new Scene(dVBox, 200, 75);
+		dialog.setScene(dScene);
+		dialog.show();
 	}
 	
 	
