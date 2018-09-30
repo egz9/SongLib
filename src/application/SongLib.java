@@ -25,7 +25,7 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 	@Override
 	public void start(Stage primaryStage) throws Exception{
 		Parent root = FXMLLoader.load(getClass().getResource("/View/SongLib.fxml"));
-		Scene scene = new Scene(root, 800, 500);
+		Scene scene = new Scene(root, 656, 504);
 		primaryStage.setTitle("Song Library");
 		primaryStage.setScene(scene);
 		primaryStage.show();
