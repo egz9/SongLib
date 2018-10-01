@@ -10,14 +10,20 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import application.Song;
+import application.SongLib;
 
 public class Controller {
 	
-	@FXML ListView<String> listArea;
+	@FXML ListView<Song> listArea;
 	
 	@FXML Button addB;
 	@FXML Button editB;
@@ -33,6 +39,13 @@ public class Controller {
 	/* 
 	 * 
 	 */
+	private ObservableList<Song> showList;
+	public void start() {
+	ArrayList<Song> songlist = SongLib.createlist();
+	showList = FXCollections.observableArrayList(songlist);
+	ListView<Song> listArea=new ListView<Song>(showList);
+	listArea.setItems(showList);
+	}
 	public void addButton(ActionEvent e){
 		//disable input anywhere but detail display
 		disableAllButDD(true);
