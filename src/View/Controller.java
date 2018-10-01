@@ -4,8 +4,11 @@ package View;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -114,6 +117,7 @@ public class Controller {
 	 * pops up an error box when song is already in library
 	 */
 	public void showErrorBox(){
+		/*
 		final Stage dialog = new Stage();
 		dialog.initModality(Modality.APPLICATION_MODAL);
 		dialog.initOwner(application.SongLib.pStage);
@@ -124,6 +128,13 @@ public class Controller {
 		Scene dScene = new Scene(dVBox, 200, 75);
 		dialog.setScene(dScene);
 		dialog.show();
+		*/
+		Alert alert = new Alert(AlertType.ERROR,"Error: Song already in library");
+		alert.showAndWait();
+		
+		if(alert.getResult() == ButtonType.OK) {
+			alert.close();
+		}
 	}
 	
 	
