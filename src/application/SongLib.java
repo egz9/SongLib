@@ -53,16 +53,6 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 		primaryStage.setTitle("Song Library");
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		/*
-		ObservableList<Song> songList = createlist();
-		
-		System.out.println("-------------------");
-		sortSongList(songList);
-		add2SongList(songList, new Song("Light my Fire", "The Doors", "The Doors", "1967"));
-		for(int i = 0; i < songList.size(); i++){
-			System.out.println(songList.get(i));
-		}
-		*/
 		//ObservableList<String> dumbList = FXCollections.observableArrayList("dog", "cat", "cow");
 		//listArea.setItems(dumbList);
 		
