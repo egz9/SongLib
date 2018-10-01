@@ -14,9 +14,13 @@ import java.util.Collections;
 import java.util.Scanner;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import javafx.scene.layout.VBox;
 
@@ -24,21 +28,33 @@ import javafx.scene.layout.VBox;
 //whenever an event happens such as a button click the handle() method is called automatically
 public class SongLib extends Application /*implements EventHandler<ActionEvent>*/ {
 	
+	public static Stage pStage;
+	
+	@FXML ListView<Song> listArea;
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
 
-	public static Stage pStage;
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception{
 		pStage = primaryStage;
 		
-		Parent root = FXMLLoader.load(getClass().getResource("/View/SongLib.fxml"));
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/View/SongLib.fxml"));
+		//System.out.println(loader.get);
+		//loader.setR
+		VBox root = loader.load();
+		View.Controller myController = loader.getController();
+		myController.start();
+		
 		Scene scene = new Scene(root, 656, 504);
 		primaryStage.setTitle("Song Library");
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		ArrayList<Song> songList = createlist();
+		/*
+		ObservableList<Song> songList = createlist();
 		
 		System.out.println("-------------------");
 		sortSongList(songList);
@@ -46,11 +62,16 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 		for(int i = 0; i < songList.size(); i++){
 			System.out.println(songList.get(i));
 		}
+		*/
+		//ObservableList<String> dumbList = FXCollections.observableArrayList("dog", "cat", "cow");
+		//listArea.setItems(dumbList);
+		
 	}
-
-	public static ArrayList<Song> createlist()
+	
+	public static ObservableList<Song> createlist()
 	{	
-		ArrayList<Song> songlist = new ArrayList<Song>();
+		ObservableList<Song> songlist = FXCollections.observableArrayList();
+		//ArrayList<Song> songlist = new ArrayList<Song>();
 		InputStream inFile = SongLib.class.getResourceAsStream("/application/SavedLibrary.txt");
 		Scanner sc = new Scanner(inFile);
 		while (sc.hasNext()){
@@ -82,7 +103,7 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 	 * sortByNameArtist object allowing sort method to know
 	 * exactly how to compare song objects
 	 */
-	public void sortSongList(ArrayList<Song> sl){
+	public static void sortSongList(ObservableList<Song> sl){
 		Collections.sort(sl, new SortByNameArtist());
 	}
 	
@@ -90,7 +111,7 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 	 * returns true or false based on whether or not the newSong
 	 * was successfully added to list
 	 */
-	public boolean add2SongList(ArrayList<Song> sl, Song newSong)throws IOException{
+	public static boolean add2SongList(ObservableList<Song> sl, Song newSong)throws IOException{
 		//check entire list to see if song has already been added
 		for(Song s : sl ) if (s.compareTo(newSong) == 0) return false;
 		
@@ -105,6 +126,7 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 		//file has successfully been added to list and file so return true
 		return true;
 	}
+	
 	
 	
 	/*
