@@ -14,6 +14,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -39,13 +41,8 @@ public class Controller {
 	/* 
 	 * 
 	 */
-	private ObservableList<Song> showList;
-	public void start() {
-	ArrayList<Song> songlist = SongLib.createlist();
-	showList = FXCollections.observableArrayList(songlist);
-	ListView<Song> listArea=new ListView<Song>(showList);
-	listArea.setItems(showList);
-	}
+	
+	
 	public void addButton(ActionEvent e){
 		//disable input anywhere but detail display
 		disableAllButDD(true);
@@ -64,6 +61,25 @@ public class Controller {
 		saveB.setVisible(true);
 		cnclB.setVisible(true);
 	}
+	public void start(){
+		
+		ObservableList<Song> songList = SongLib.createlist();
+		
+		System.out.println("-------------------");
+		SongLib.sortSongList(songList);
+		try {
+			SongLib.add2SongList(songList, new Song("Light my Fire", "The Doors", "The Doors", "1967"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for(int i = 0; i < songList.size(); i++){
+			System.out.println(songList.get(i));
+		}
+		listArea.setItems(songList);
+		
+	}
+	
 	
 	/* allows text fields to be changed. once user saves changes, the fields
 	 * will no longer allow changes
