@@ -80,6 +80,9 @@ public class Controller {
 			System.out.println(songList.get(i));
 		}
 		listArea.setItems(songList);
+		listArea.getSelectionModel().selectFirst();
+		//listArea.getSelectionModel().getSelectedItem();
+		
 		
 	}
 	
