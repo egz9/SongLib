@@ -33,8 +33,7 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 	}
 
 	public static ArrayList<Song> createlist()
-	{
-		
+	{	
 		ArrayList<Song> songlist = new ArrayList<Song>();
 		InputStream inFile = SongLib.class.getResourceAsStream("/application/SavedLibrary.txt");
 		Scanner sc = new Scanner(inFile);
