@@ -118,6 +118,7 @@ public class Controller {
 		edit = 1;
 	}
 	
+	//method runs when save button is pressed
 	public void saveButton() throws IOException{
 		//print some info to ensure save button is working correctly
 		System.out.println("dog");
@@ -238,6 +239,11 @@ public class Controller {
 		if(alert.getResult() == ButtonType.OK) {
 			alert.close();
 		}
+		
+		disableAllButDD(false); 
+		allowDetailEdits(false);
+		saveB.setVisible(false);
+		cnclB.setVisible(false);
 	}
 	
 	

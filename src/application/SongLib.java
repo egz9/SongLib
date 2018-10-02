@@ -130,9 +130,9 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 		}
 		FileWriter writer = new FileWriter("src/application/SavedLibrary.txt", false);
 		for(Song s : sl){
-			//write();
+			writer.write(s.toFullString() + "\n");
 		}
-		
+		writer.close();
 		return true;
 	}
 	
