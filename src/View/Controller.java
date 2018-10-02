@@ -49,7 +49,7 @@ public class Controller {
 	ObservableList<Song> songList = SongLib.createlist();
 	int add = 0;
 	int delete = 0;
-
+	int edit = 0;
 
 	
 	public void start(){
@@ -107,6 +107,7 @@ public class Controller {
 		allowDetailEdits(true); //set each detail as editable so user can add new info
 		saveB.setVisible(true);
 		cnclB.setVisible(true);
+		edit = 1;
 	}
 	
 	public void saveButton() throws IOException{
@@ -119,6 +120,7 @@ public class Controller {
 		if(add == 1)
 		{
 			Song s1 = new Song(songField.getText(), artistField.getText(), albumField.getText(), yearField.getText());
+			/*
 			for(Song s : songList) 
 			{
 				if (s.compareTo(s1) == 0)
@@ -128,15 +130,33 @@ public class Controller {
 					return;
 				}
 			}
-			SongLib.add2SongList(songList, s1);
+			*/
+			if(SongLib.add2SongList(songList, s1))
+			{
+				SongLib.add2SongList(songList, s1);
+				add = 0;
+			}
+			else
+			{
+				showErrorBox();
+				add = 0;
+				return;
+			}
 			/*songList.add(s1);
 			SongLib.sortSongList(songList);
 			
 			FileWriter writer = new FileWriter("src/application/SavedLibrary.txt", true);
 			writer.append(s1.toString() + "\n");
 			writer.close();
-			*/
+			
 			add = 0;
+			*/
+		}
+		
+		if(edit == 1)
+		{
+			Song s2 = new Song(songField.getText(), artistField.getText(), albumField.getText(), yearField.getText());
+			
 			
 		}
 		
