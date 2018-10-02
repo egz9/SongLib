@@ -77,7 +77,7 @@ public class Controller {
 			e.printStackTrace();
 		}
 		for(int i = 0; i < songList.size(); i++){
-			System.out.println(songList.get(i));
+			System.out.println(songList.get(i).toFullString());
 		}
 		listArea.setItems(songList);
 		listArea.getSelectionModel().selectFirst();

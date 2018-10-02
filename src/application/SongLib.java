@@ -110,7 +110,7 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 		
 		//add to saved library
 		FileWriter writer = new FileWriter("src/application/SavedLibrary.txt", true);
-		writer.append(newSong.toString() + "\n");
+		writer.append(newSong.toFullString() + "\n");
 		writer.close();
 		
 		//file has successfully been added to list and file so return true

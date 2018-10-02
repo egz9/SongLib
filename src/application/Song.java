@@ -43,7 +43,9 @@ public class Song{
 	
 	@Override
 	public String toString(){
+		return this.name + "_" +  this.artist;		
+	}
+	public String toFullString(){
 		return this.name + "_" +  this.artist + "_" + this.album + "_" + this.year;		
 	}
-	
 }
