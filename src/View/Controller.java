@@ -18,6 +18,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -44,7 +45,10 @@ public class Controller {
 	/* 
 	 * 
 	 */
-	
+
+	ObservableList<Song> songList = SongLib.createlist();
+	int add = 0;
+	int delete = 0;
 	
 	public void addButton(ActionEvent e){
 		//disable input anywhere but detail display
@@ -61,12 +65,13 @@ public class Controller {
 		
 		//save button pops up. It will be the only button besides cancel
 		//that the user can push
+		add = 1;
 		saveB.setVisible(true);
 		cnclB.setVisible(true);
 	}
 	public void start(){
 		
-		ObservableList<Song> songList = SongLib.createlist();
+		//ObservableList<Song> songList = SongLib.createlist();
 		
 		System.out.println("-------------------");
 		SongLib.sortSongList(songList);
@@ -98,11 +103,25 @@ public class Controller {
 		cnclB.setVisible(true);
 	}
 	
-	public void saveButton(){
+	public void saveButton() throws IOException{
 		//print some info to ensure save button is working correctly
 		System.out.println("dog");
 		System.out.println(songField.getText() + "_" + artistField.getText() + "_"
 				+ albumField.getText() + "_" + yearField.getText());
+		
+		if(add == 1)
+		{
+			Song s = new Song(songField.getText(), artistField.getText(), albumField.getText(), yearField.getText());
+			songList.add(s);
+			SongLib.sortSongList(songList);
+			
+			FileWriter writer = new FileWriter("src/application/SavedLibrary.txt", true);
+			writer.append(s.toString() + "\n");
+			writer.close();
+			
+			add = 0;
+		}
+		
 		
 		//dumb code, just for testing
 		String s = new String(songField.getText());

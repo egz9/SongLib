@@ -76,6 +76,10 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 					Song s = new Song(arrOfdet[0], arrOfdet[1], arrOfdet[2], arrOfdet[3]);
 					songlist.add(s);
 				}
+				else if(arrOfdet.length > 3 && arrOfdet[2].equals("")) {
+					Song s3 = new Song(arrOfdet[0], arrOfdet[1],"", arrOfdet[3]);
+					songlist.add(s3);
+				}
 				else {
 					Song s1 = new Song(arrOfdet[0],arrOfdet[1],arrOfdet[2],"");
 					songlist.add(s1);
