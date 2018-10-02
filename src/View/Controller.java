@@ -45,16 +45,16 @@ public class Controller {
 	/* 
 	 * 
 	 */
-<<<<<<< HEAD
+
 
 	ObservableList<Song> songList = SongLib.createlist();
 	int add = 0;
 	int delete = 0;
-=======
+
 	
 	public void start(){
 		
-		ObservableList<Song> songList = SongLib.createlist();
+		//ObservableList<Song> songList = SongLib.createlist();
 		
 		System.out.println("-------------------");
 		SongLib.sortSongList(songList);
@@ -70,7 +70,7 @@ public class Controller {
 		listArea.setItems(songList);
 		listArea.getSelectionModel().selectFirst();	
 	}
->>>>>>> 1ffa72e443bc805b311109980afb6f1b73449a43
+
 	
 	public void addButton(ActionEvent e){
 		//disable input anywhere but detail display
@@ -90,34 +90,14 @@ public class Controller {
 		add = 1;
 		saveB.setVisible(true);
 		cnclB.setVisible(true);
-	}
-<<<<<<< HEAD
-	public void start(){
-		
-		//ObservableList<Song> songList = SongLib.createlist();
-		
-		System.out.println("-------------------");
-		SongLib.sortSongList(songList);
-		try {
-			SongLib.add2SongList(songList, new Song("Light my Fire", "The Doors", "The Doors", "1967"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		for(int i = 0; i < songList.size(); i++){
-			System.out.println(songList.get(i));
-		}
-		listArea.setItems(songList);
-		listArea.getSelectionModel().selectFirst();
-		//listArea.getSelectionModel().getSelectedItem();
-		
-=======
+	}		
+
 	
 	public void deleteButton(){
 		Song selectedSong = listArea.getSelectionModel().getSelectedItem();
 		System.out.println("DEL: " + selectedSong );
 		SongLib.delFromSongList((ObservableList<Song>)listArea.getItems(), selectedSong);
->>>>>>> 1ffa72e443bc805b311109980afb6f1b73449a43
+
 		
 	}
 
