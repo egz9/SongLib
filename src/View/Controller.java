@@ -68,8 +68,11 @@ public class Controller {
 		}
 		listArea.setItems(songList);
 		listArea.getSelectionModel().selectFirst();	
+		listArea.getSelectionModel().selectedIndexProperty().addListener
+			((songList, oldVal, newVal) -> showDetails(listArea.getSelectionModel().getSelectedItem()));
 	}
-
+	
+	
 	
 	public void addButton(ActionEvent e){
 		//disable input anywhere but detail display
@@ -94,7 +97,12 @@ public class Controller {
 	public void deleteButton(){
 		Song selectedSong = listArea.getSelectionModel().getSelectedItem();
 		System.out.println("DEL: " + selectedSong );
-		SongLib.delFromSongList((ObservableList<Song>)listArea.getItems(), selectedSong);
+		try {
+			SongLib.delFromSongList((ObservableList<Song>)listArea.getItems(), selectedSong);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -211,6 +219,13 @@ public class Controller {
 		addB.setDisable(b);
 		editB.setDisable(b);
 		delB.setDisable(b);
+	}
+	
+	private void showDetails(Song s){
+		songField.setText(s.getName());
+		artistField.setText(s.getArtist());
+		albumField.setText(s.getAlbum());
+		yearField.setText(s.getYear());
 	}
 	
 }

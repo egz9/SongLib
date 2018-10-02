@@ -50,4 +50,17 @@ public class Song{
 	public String toFullString(){
 		return this.name + "_" +  this.artist + "_" + this.album + "_" + this.year;		
 	}
+	
+	public String getName(){
+		return name;
+	}
+	public String getArtist(){
+		return artist;
+	}
+	public String getAlbum(){
+		return album;
+	}
+	public String getYear(){
+		return year;
+	}
 }
