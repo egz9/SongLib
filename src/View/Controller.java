@@ -165,18 +165,17 @@ public class Controller {
 		{
 			
 			Song selectedSong = listArea.getSelectionModel().getSelectedItem();
-			try {
-				SongLib.delFromSongList((ObservableList<Song>)listArea.getItems(), selectedSong);
-			} catch (IOException e) {
-			// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
 			
 			Song s2 = new Song(songField.getText(), artistField.getText(), albumField.getText(), yearField.getText());
 			if(SongLib.add2SongList(songList, s2))
 			{
 				SongLib.add2SongList(songList, s2);
+				try {
+					SongLib.delFromSongList((ObservableList<Song>)listArea.getItems(), selectedSong);
+				} catch (IOException e) {
+				// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				edit = 0;
 			}
 			else
