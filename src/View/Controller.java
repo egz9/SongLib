@@ -67,9 +67,9 @@ public class Controller {
 			System.out.println(songList.get(i).toFullString());
 		}
 		listArea.setItems(songList);
-		listArea.getSelectionModel().selectFirst();	
 		listArea.getSelectionModel().selectedIndexProperty().addListener
 			((songList, oldVal, newVal) -> showDetails(listArea.getSelectionModel().getSelectedItem()));
+		listArea.getSelectionModel().selectFirst();	
 	}
 	
 	
