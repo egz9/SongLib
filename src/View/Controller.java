@@ -45,6 +45,24 @@ public class Controller {
 	 * 
 	 */
 	
+	public void start(){
+		
+		ObservableList<Song> songList = SongLib.createlist();
+		
+		System.out.println("-------------------");
+		SongLib.sortSongList(songList);
+		try {
+			SongLib.add2SongList(songList, new Song("Light my Fire", "The Doors", "The Doors", "1967"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for(int i = 0; i < songList.size(); i++){
+			System.out.println(songList.get(i).toFullString());
+		}
+		listArea.setItems(songList);
+		listArea.getSelectionModel().selectFirst();	
+	}
 	
 	public void addButton(ActionEvent e){
 		//disable input anywhere but detail display
@@ -64,29 +82,14 @@ public class Controller {
 		saveB.setVisible(true);
 		cnclB.setVisible(true);
 	}
-	public void start(){
-		
-		ObservableList<Song> songList = SongLib.createlist();
-		
-		System.out.println("-------------------");
-		SongLib.sortSongList(songList);
-		try {
-			SongLib.add2SongList(songList, new Song("Light my Fire", "The Doors", "The Doors", "1967"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		for(int i = 0; i < songList.size(); i++){
-			System.out.println(songList.get(i).toFullString());
-		}
-		listArea.setItems(songList);
-		listArea.getSelectionModel().selectFirst();
-		//listArea.getSelectionModel().getSelectedItem();
-		
+	
+	public void deleteButton(){
+		Song selectedSong = listArea.getSelectionModel().getSelectedItem();
+		System.out.println("DEL: " + selectedSong );
+		SongLib.delFromSongList((ObservableList<Song>)listArea.getItems(), selectedSong);
 		
 	}
-	
-	
+
 	/* allows text fields to be changed. once user saves changes, the fields
 	 * will no longer allow changes
 	 */
