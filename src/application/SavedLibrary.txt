@@ -1,3 +1,10 @@
 Light my Fire_The Doors_The Doors_1967
 Get Back_The Beatles__
+<<<<<<< HEAD
 High on life_Martin Garrix__
+=======
+Angelina_Pinegrove
+Story_Chon
+ripple_Grateful Dead
+Fuck the System_System of a down
+>>>>>>> e8e516cd0d9e09449b8c70c220d11ee9d4b34efe

@@ -49,9 +49,11 @@ public class Controller {
 	ObservableList<Song> songList = SongLib.createlist();
 	int add = 0;
 	int delete = 0;
+
+
 	
 	public void start(){
-		
+		//ObservableList<Song> songList = SongLib.createlist();
 		
 		System.out.println("-------------------");
 		SongLib.sortSongList(songList);
@@ -88,9 +90,6 @@ public class Controller {
 		saveB.setVisible(true);
 		cnclB.setVisible(true);
 	}
-
-
-		
 	
 	public void deleteButton(){
 		Song selectedSong = listArea.getSelectionModel().getSelectedItem();
