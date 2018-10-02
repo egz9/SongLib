@@ -116,6 +116,7 @@ public class Controller {
 		System.out.println(songField.getText() + "_" + artistField.getText() + "_"
 				+ albumField.getText() + "_" + yearField.getText());
 		
+		
 		if(add == 1)
 		{
 			Song s1 = new Song(songField.getText(), artistField.getText(), albumField.getText(), yearField.getText());
@@ -128,13 +129,14 @@ public class Controller {
 					return;
 				}
 			}
-			songList.add(s1);
+			SongLib.add2SongList(songList, s1);
+			/*songList.add(s1);
 			SongLib.sortSongList(songList);
 			
 			FileWriter writer = new FileWriter("src/application/SavedLibrary.txt", true);
 			writer.append(s1.toString() + "\n");
 			writer.close();
-			
+			*/
 			add = 0;
 			
 		}
