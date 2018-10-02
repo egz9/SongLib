@@ -19,6 +19,7 @@ public class Song{
 	}
 	public Song() {
 	}
+	/*
 	public static boolean IsSame(Song s, Song s2)
 	{
 		if(s.name == s2.name)
@@ -30,6 +31,7 @@ public class Song{
 		}
 		return false;
 	}
+	*/
 	
 	//returns negative number if this song comes before song s
 	//returns 0 if song s and this song are equal

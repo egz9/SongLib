@@ -46,14 +46,13 @@ public class Controller {
 	 * 
 	 */
 
-
 	ObservableList<Song> songList = SongLib.createlist();
 	int add = 0;
 	int delete = 0;
 
+
 	
 	public void start(){
-		
 		//ObservableList<Song> songList = SongLib.createlist();
 		
 		System.out.println("-------------------");
@@ -90,14 +89,12 @@ public class Controller {
 		add = 1;
 		saveB.setVisible(true);
 		cnclB.setVisible(true);
-	}		
-
+	}
 	
 	public void deleteButton(){
 		Song selectedSong = listArea.getSelectionModel().getSelectedItem();
 		System.out.println("DEL: " + selectedSong );
 		SongLib.delFromSongList((ObservableList<Song>)listArea.getItems(), selectedSong);
-
 		
 	}
 
@@ -127,6 +124,7 @@ public class Controller {
 				{
 					showErrorBox();
 					add = 0;
+					return;
 				}
 			}
 			songList.add(s1);
