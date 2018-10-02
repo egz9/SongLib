@@ -111,24 +111,33 @@ public class Controller {
 		
 		if(add == 1)
 		{
-			Song s = new Song(songField.getText(), artistField.getText(), albumField.getText(), yearField.getText());
-			songList.add(s);
+			Song s1 = new Song(songField.getText(), artistField.getText(), albumField.getText(), yearField.getText());
+			for(Song s : songList) 
+			{
+				if (s.compareTo(s1) == 0)
+				{
+					showErrorBox();
+					add = 0;
+				}
+			}
+			songList.add(s1);
 			SongLib.sortSongList(songList);
 			
 			FileWriter writer = new FileWriter("src/application/SavedLibrary.txt", true);
-			writer.append(s.toString() + "\n");
+			writer.append(s1.toString() + "\n");
 			writer.close();
 			
 			add = 0;
+			
 		}
 		
 		
 		//dumb code, just for testing
-		String s = new String(songField.getText());
-		s.trim();
-		if (s.equals("error")){
-			showErrorBox();
-		}
+		//String s = new String(songField.getText());
+		//s.trim();
+		//if (s.equals("error")){
+		//	showErrorBox();
+		//}
 		
 		
 		disableAllButDD(false);
