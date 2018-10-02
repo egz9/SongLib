@@ -54,12 +54,12 @@
                </GridPane.margin>
             </Text>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Artist:" textAlignment="CENTER" wrappingWidth="64.13671875" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <TextField fx:id="songField" editable="false" text="Get Back" GridPane.columnIndex="1" />
-            <TextField fx:id="artistField" editable="false" text="The Beatles" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="songField" editable="false" GridPane.columnIndex="1" />
+            <TextField fx:id="artistField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Album:" textAlignment="CENTER" wrappingWidth="58.828125" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Year:" textAlignment="CENTER" wrappingWidth="52.185546875" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <TextField fx:id="albumField" editable="false" text="Let it Be" GridPane.columnIndex="3" />
-            <TextField fx:id="yearField" editable="false" text="1970" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <TextField fx:id="albumField" editable="false" GridPane.columnIndex="3" />
+            <TextField fx:id="yearField" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             <Button fx:id="saveB" mnemonicParsing="false" onAction="#saveButton" text="Save" textAlignment="CENTER" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
             <Button fx:id="cnclB" mnemonicParsing="false" onAction="#cancelButton" text="Cancel" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
          </children>
