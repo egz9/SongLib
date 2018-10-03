@@ -116,6 +116,7 @@ public class Controller {
 		saveB.setVisible(true);
 		cnclB.setVisible(true);
 		edit = 1;
+		
 	}
 	
 	//method runs when save button is pressed
@@ -164,26 +165,29 @@ public class Controller {
 		
 		if(edit == 1)
 		{
-			
 			Song selectedSong = listArea.getSelectionModel().getSelectedItem();
 			
 			Song s2 = new Song(songField.getText(), artistField.getText(), albumField.getText(), yearField.getText());
-			if(SongLib.add2SongList(songList, s2))
+			for(Song s : songList)	
 			{
-				SongLib.add2SongList(songList, s2);
-				try {
-					SongLib.delFromSongList((ObservableList<Song>)listArea.getItems(), selectedSong);
-				} catch (IOException e) {
-				// TODO Auto-generated catch block
-					e.printStackTrace();
+				if((s.compareTo(s2) == 0 )|| (selectedSong.compareTo(s2) == 0))
+				{
+					showErrorBox();
+					edit = 0;
+					return;
 				}
-				edit = 0;
-			}
-			else
-			{
-				showErrorBox();
-				edit = 0;
-				return;
+				else
+				{
+					songList.add(s2);
+					SongLib.sortSongList(songList);
+					try {
+						SongLib.delFromSongList((ObservableList<Song>)listArea.getItems(), selectedSong);
+					} catch (IOException e) {
+					// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					edit = 0;
+				}
 			}
 		}
 		
