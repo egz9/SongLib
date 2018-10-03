@@ -170,7 +170,8 @@ public class Controller {
 		//print some info to ensure save button is working correctly
 		//System.out.println("dog");
 		//System.out.println(songField.getText() + "_" + artistField.getText() + "_" + albumField.getText() + "_" + yearField.getText());
-		
+		if (!userInputCheck()) return;
+			
 		
 		if(add == 1)
 		{
@@ -188,7 +189,7 @@ public class Controller {
 			*/
 			if(SongLib.add2SongList(songList, s1))
 			{
-				SongLib.add2SongList(songList, s1);
+				//SongLib.add2SongList(songList, s1);
 				add = 0;
 				listArea.getSelectionModel().select(s1);
 			}
@@ -196,7 +197,7 @@ public class Controller {
 			{
 				showErrorBox();
 				add = 0;
-				return;
+				showDetails();
 			}
 			/*songList.add(s1);
 			SongLib.sortSongList(songList);
@@ -209,7 +210,7 @@ public class Controller {
 			*/
 		}
 		
-		if(edit == 1)
+		else if(edit == 1)
 		{
 			Song selectedSong = listArea.getSelectionModel().getSelectedItem();
 			
@@ -220,6 +221,12 @@ public class Controller {
 				{
 					showErrorBox();
 					edit = 0;
+					listArea.getSelectionModel().select(selectedSong);
+					showDetails();
+					disableAllButDD(false);
+					allowDetailEdits(false);
+					saveB.setVisible(false);
+					cnclB.setVisible(false);
 					return;
 				}
 			}
@@ -326,6 +333,31 @@ public class Controller {
 		artistField.setText(s.getArtist());
 		albumField.setText(s.getAlbum());
 		yearField.setText(s.getYear());
+	}
+	//if there are underscores in any of the text fields or if the year is not a number
+	//information alerts pop up
+	private boolean userInputCheck(){
+		
+		//no underscores
+		if (songField.getText().contains("_") || artistField.getText().contains("_") 
+		|| albumField.getText().contains("_")   || yearField.getText().contains("_")){
+			Alert alert = new Alert(AlertType.INFORMATION,"No underscores please");
+			alert.showAndWait();
+			if(alert.getResult() == ButtonType.OK) alert.close();
+			return false;
+		}
+		//year must be a number
+		if (yearField.getText().length() >= 1){
+			try {
+				Integer.parseInt(yearField.getText());
+			} catch (NumberFormatException | NullPointerException nfe){
+				Alert alert = new Alert(AlertType.INFORMATION,"Year must be an integer");
+				alert.showAndWait();
+				if(alert.getResult() == ButtonType.OK) alert.close();
+				return false;
+			}
+		}
+		return true;
 	}
 	
 }
