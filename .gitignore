@@ -10,3 +10,5 @@ bin/application/SongLib.class
 bin/View/Controller.class
 bin/application/SongLib.class
 bin/View/Controller.class
+src/application/SavedLibrary.txt
+bin/View/Controller.class

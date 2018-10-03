@@ -123,9 +123,8 @@ public class Controller {
 	//method runs when save button is pressed
 	public void saveButton() throws IOException{
 		//print some info to ensure save button is working correctly
-		System.out.println("dog");
-		System.out.println(songField.getText() + "_" + artistField.getText() + "_"
-				+ albumField.getText() + "_" + yearField.getText());
+		//System.out.println("dog");
+		//System.out.println(songField.getText() + "_" + artistField.getText() + "_" + albumField.getText() + "_" + yearField.getText());
 		
 		
 		if(add == 1)
@@ -146,7 +145,7 @@ public class Controller {
 			{
 				SongLib.add2SongList(songList, s1);
 				add = 0;
-				listArea.getSelectionModel().select(0);
+				listArea.getSelectionModel().select(s1);
 			}
 			else
 			{
@@ -178,19 +177,18 @@ public class Controller {
 					edit = 0;
 					return;
 				}
-				else
-				{
-					songList.add(s2);
-					SongLib.sortSongList(songList);
-					try {
-						SongLib.delFromSongList((ObservableList<Song>)listArea.getItems(), selectedSong);
-					} catch (IOException e) {
-					// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					edit = 0;
-				}
 			}
+			
+			songList.add(s2);
+			SongLib.sortSongList(songList);
+			try {
+				SongLib.delFromSongList((ObservableList<Song>)listArea.getItems(), selectedSong);
+			} catch (IOException e) {
+			// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			edit = 0;
+			listArea.getSelectionModel().select(s2);
 		}
 		
 		
@@ -273,7 +271,8 @@ public class Controller {
 	
 	private void showDetails(){
 		Song s = listArea.getSelectionModel().getSelectedItem();
-		//System.out.println("[sd] " + s.toFullString());
+		if (s == null) return;		
+		System.out.println("[sd] " + s.toFullString());
 		songField.setText(s.getName());
 		artistField.setText(s.getArtist());
 		albumField.setText(s.getAlbum());
