@@ -68,7 +68,8 @@ public class Controller {
 		}
 		listArea.setItems(songList);
 		listArea.getSelectionModel().selectedIndexProperty().addListener
-			((songList, oldVal, newVal) -> showDetails(listArea.getSelectionModel().getSelectedItem()));
+			((songList, oldVal, newVal) -> showDetails());
+		
 		listArea.getSelectionModel().selectFirst();	
 	}
 	
@@ -144,6 +145,7 @@ public class Controller {
 			{
 				SongLib.add2SongList(songList, s1);
 				add = 0;
+				listArea.getSelectionModel().select(0);
 			}
 			else
 			{
@@ -265,7 +267,9 @@ public class Controller {
 		delB.setDisable(b);
 	}
 	
-	private void showDetails(Song s){
+	private void showDetails(){
+		Song s = listArea.getSelectionModel().getSelectedItem();
+		//System.out.println("[sd] " + s.toFullString());
 		songField.setText(s.getName());
 		artistField.setText(s.getArtist());
 		albumField.setText(s.getAlbum());

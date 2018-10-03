@@ -130,6 +130,7 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 		}
 		FileWriter writer = new FileWriter("src/application/SavedLibrary.txt", false);
 		for(Song s : sl){
+			System.out.println("Writing to file: " + s.toFullString() );
 			writer.write(s.toFullString() + "\n");
 		}
 		writer.close();
