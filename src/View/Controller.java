@@ -57,12 +57,6 @@ public class Controller {
 		
 		System.out.println("-------------------");
 		SongLib.sortSongList(songList);
-		try {
-			SongLib.add2SongList(songList, new Song("Light my Fire", "The Doors", "The Doors", "1967"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		for(int i = 0; i < songList.size(); i++){
 			System.out.println(songList.get(i).toFullString());
 		}
@@ -96,21 +90,72 @@ public class Controller {
 	}
 	
 	public void deleteButton(){
+		if (listArea.getItems().size() < 1){
+			Alert alert = new Alert(AlertType.ERROR,"Error: No songs in library to delete");
+			alert.showAndWait();
+			
+			if(alert.getResult() == ButtonType.OK) {
+				alert.close();
+			}
+			return;
+		}
 		Song selectedSong = listArea.getSelectionModel().getSelectedItem();
-		System.out.println("DEL: " + selectedSong );
+		int selectedIndex = listArea.getSelectionModel().getSelectedIndex();
+		
+		//ask user if they are sure they want to delete
+		Alert alert = new Alert(AlertType.CONFIRMATION,"Are you sure you want to delete selected song");
+		alert.showAndWait();
+		if (alert.getResult() == ButtonType.CANCEL) {
+			return;
+		}
+		
+		Song nextSongToSelect;
+		if (listArea.getItems().size() <= 1) {
+			nextSongToSelect = null;
+		}
+		//if its the last song in list, select previous song
+		else if (selectedIndex + 1 >= listArea.getItems().size()){
+			nextSongToSelect = listArea.getItems().get(selectedIndex - 1);
+		}
+		//otherwise select next song
+		else {
+			nextSongToSelect = listArea.getItems().get(selectedIndex + 1);
+		}
+		System.out.println("DEL: " + selectedSong + " at index " + selectedIndex );
 		try {
 			SongLib.delFromSongList((ObservableList<Song>)listArea.getItems(), selectedSong);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		if (nextSongToSelect != null){
+			System.out.println("selecting " + nextSongToSelect.toFullString());
+			listArea.getSelectionModel().select(nextSongToSelect);
+			showDetails();
+		}
+		//last song was deleted so we clear textfields
+		else {
+			songField.clear();
+			artistField.clear();
+			albumField.clear();
+			yearField.clear();
+		}
 	}
 
 	/* allows text fields to be changed. once user saves changes, the fields
 	 * will no longer allow changes
 	 */
 	public void editButton(ActionEvent e){
+		
+		if (listArea.getItems().size() < 1){
+			Alert alert = new Alert(AlertType.ERROR,"Error: No song to edit");
+			alert.showAndWait();
+			
+			if(alert.getResult() == ButtonType.OK) {
+				alert.close();
+			}
+			return;
+		}
 		
 		disableAllButDD(true); 	//disable input everywhere but detail display
 		allowDetailEdits(true); //set each detail as editable so user can add new info
@@ -214,10 +259,11 @@ public class Controller {
 		cnclB.setVisible(false);
 		
 		//not sure if I'm going to keep this
-		songField.clear();
-		artistField.clear();
-		albumField.clear();
-		yearField.clear();
+		//songField.clear();
+		//artistField.clear();
+		//albumField.clear();
+		//yearField.clear();
+		showDetails();
 	}
 	
 	/*
@@ -271,7 +317,10 @@ public class Controller {
 	
 	private void showDetails(){
 		Song s = listArea.getSelectionModel().getSelectedItem();
-		if (s == null) return;		
+		if (s == null){ 
+			System.out.println("Null song, cant display details");
+			return;		
+		}
 		System.out.println("[sd] " + s.toFullString());
 		songField.setText(s.getName());
 		artistField.setText(s.getArtist());
