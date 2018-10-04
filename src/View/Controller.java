@@ -46,19 +46,20 @@ public class Controller {
 	 * 
 	 */
 
-	ObservableList<Song> songList = SongLib.createlist();
+	ObservableList<Song> songList /*= SongLib.createlist()*/;
 	int add = 0;
 	int delete = 0;
 	int edit = 0;
 
 	
 	public void start(){
-		//ObservableList<Song> songList = SongLib.createlist();
+		songList = SongLib.createlist();
 		
-		System.out.println("-------------------");
+		//System.out.println("-------------------");
 		SongLib.sortSongList(songList);
+		//System.out.println("SONGLIST");
 		for(int i = 0; i < songList.size(); i++){
-			System.out.println(songList.get(i).toFullString());
+			//System.out.println(songList.get(i).toFullString());
 		}
 		listArea.setItems(songList);
 		listArea.getSelectionModel().selectedIndexProperty().addListener
@@ -121,7 +122,7 @@ public class Controller {
 		else {
 			nextSongToSelect = listArea.getItems().get(selectedIndex + 1);
 		}
-		System.out.println("DEL: " + selectedSong + " at index " + selectedIndex );
+		//System.out.println("DEL: " + selectedSong + " at index " + selectedIndex );
 		try {
 			SongLib.delFromSongList((ObservableList<Song>)listArea.getItems(), selectedSong);
 		} catch (IOException e) {
@@ -129,7 +130,7 @@ public class Controller {
 			e.printStackTrace();
 		}
 		if (nextSongToSelect != null){
-			System.out.println("selecting " + nextSongToSelect.toFullString());
+			//System.out.println("selecting " + nextSongToSelect.toFullString());
 			listArea.getSelectionModel().select(nextSongToSelect);
 			showDetails();
 		}
@@ -325,10 +326,10 @@ public class Controller {
 	private void showDetails(){
 		Song s = listArea.getSelectionModel().getSelectedItem();
 		if (s == null){ 
-			System.out.println("Null song, cant display details");
+			//System.out.println("Null song, cant display details");
 			return;		
 		}
-		System.out.println("[sd] " + s.toFullString());
+		//System.out.println("[sd] " + s.toFullString());
 		songField.setText(s.getName());
 		artistField.setText(s.getArtist());
 		albumField.setText(s.getAlbum());
@@ -357,6 +358,15 @@ public class Controller {
 				return false;
 			}
 		}
+		
+		//name and artist cant be blank
+		if (artistField.getText().length() < 1 || songField.getText().length() < 1){
+			Alert alert = new Alert(AlertType.INFORMATION,"artist and song name cannot be blank");
+			alert.showAndWait();
+			if(alert.getResult() == ButtonType.OK) alert.close();
+			return false;
+		}
+		
 		return true;
 	}
 	

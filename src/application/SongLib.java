@@ -67,10 +67,11 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 		while (sc.hasNext()){
 			String detail = sc.nextLine();
 			String [] arrOfdet = detail.split("_");
-			for(String a : arrOfdet) 
-				System.out.println(a);
+			//for(String a : arrOfdet) 
+				//System.out.println(a);
 			if(arrOfdet.length > 2 && arrOfdet[2] != null)
 			{
+				//System.out.println(detail);
 				if(arrOfdet.length > 3 && arrOfdet[3] != null)
 				{
 					Song s = new Song(arrOfdet[0], arrOfdet[1], arrOfdet[2], arrOfdet[3]);
@@ -86,6 +87,7 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 				}
 			}
 			else {
+				//System.out.println(detail);
 				Song s2 = new Song(arrOfdet[0],arrOfdet[1],"","");
 				songlist.add(s2);
 			}
@@ -124,13 +126,13 @@ public class SongLib extends Application /*implements EventHandler<ActionEvent>*
 	public static boolean delFromSongList(ObservableList<Song> sl, Song songToDel) throws IOException{
 		for(int i = 0; i < sl.size(); i++){
 			if (sl.get(i).compareTo(songToDel) == 0){
-				System.out.println("Found Song to Delete");
+				//System.out.println("Found Song to Delete");
 				sl.remove(i);
 			}
 		}
 		FileWriter writer = new FileWriter("src/application/SavedLibrary.txt", false);
 		for(Song s : sl){
-			System.out.println("Writing to file: " + s.toFullString() );
+			//System.out.println("Writing to file: " + s.toFullString() );
 			writer.write(s.toFullString() + "\n");
 		}
 		writer.close();
